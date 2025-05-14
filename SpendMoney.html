@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spend Mukesh Ambani's Fortune</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Spend Mukesh Ambani money. Try to spend the wealth of India's richest man on Indian and world luxury!">
+  <meta name="keywords" content="Mukesh Ambani money , jaymoney,spend game, billionaire simulation, Indian luxury, money spending game">
+  <meta name="author" content="jay rahane">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Montserrat', sans-serif; background: linear-gradient(120deg, #f1f5f9 0%, #e0c3fc 100%);}
+    .money {font-family: 'Montserrat', monospace;}
+    .item-card {transition: transform 0.2s, box-shadow 0.2s;}
+    .item-card:hover {transform: translateY(-2px) scale(1.025); box-shadow:0 12px 24px 0 rgba(77,81,92,0.16);}
+    .spin {animation:spin 2s linear infinite;} @keyframes spin {from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+    .fade-in {animation: fadeInUp 1s cubic-bezier(.77,0,.175,1);}
+    @keyframes fadeInUp {0%{opacity:0; transform:translate3d(0,40%,0)}100%{opacity:1; transform:none;}}
+    .buy-btn,.sell-btn {transition:background .15s,color .15s;}
+    .buy-btn:hover {background: #22c55e;}
+    .sell-btn:hover {background: #f87171;}
+    .indian-badge {
+      background: linear-gradient(90deg,#ffe066 30%, #ffb347 70%);
+      color: #875404;
+      padding: 2px 8px;
+      border-radius: 1rem;
+      font-size: 0.68rem;
+      margin-left: 0.4em;
+      font-weight: 500;
+      vertical-align: top;
+    }
+    .super-card {
+      background: linear-gradient(120deg,#fffbe6 60%,#ffe0e9 100%);
+      border: 2.8px solid #ffe066;
+      box-shadow: 0 6px 36px 0 rgba(255, 194, 30, 0.09),0 1.5px 3.6px 0 rgba(255,150,150,0.07);
+    }
+    .super-card .item-card {
+      border: 2px solid #f59e42;
+    }
+    .item-img {
+      min-width: 6.5rem; min-height: 5rem;
+      background: #fff9c4;
+      object-fit: cover;
+      border-radius: 1rem;
+      border: 1.5px solid #e4e4e7;
+    }
+    .popover {
+      position: absolute;
+      left: 100%; top: 0;
+      width: max-content;
+      background: #fff8e1;
+      color: #734d15;
+      border: 1px solid #ffe066;
+      font-size: .9rem;
+      border-radius: 8px;
+      padding: 6px 14px;
+      box-shadow: 0 2px 9px 0 rgba(104,78,25,.17);
+      z-index: 10;
+      margin-left: 0.8rem;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.1s;
+    }
+    .item-card:hover .popover { opacity: 1; pointer-events: auto;}
+    .chart-legend {
+      font-size:0.92rem; font-weight:500; margin-top:0.5rem;
+      color: #a16207;
+    }
+    .bg-indian {
+      background: repeating-linear-gradient(-145deg,#FF9800 0px,#FF9800 8px,#FFE066 8px,#FFE066 16px);
+    }
+  </style>
+</head>
+<body class="min-h-screen text-gray-900">
+
+  <div class="max-w-3xl mx-auto px-4 pt-8 pb-32">
+    <!-- Ambani Big Top Section -->
+    <div class="flex flex-col sm:flex-row sm:items-center gap-5 mb-12">
+      <div class="flex-shrink-0 relative">
+        <div class="rounded-full shadow-xl border-8 border-yellow-100 p-1 super-card">
+          <img src="https://www.livemint.com/lm-img/img/2024/10/10/original/Forbes_2024_India_Richest_Mukesh_Ambani_tops_news_1728548952160.jpg" alt="Mukesh Ambani 2024" class="rounded-full w-40 h-40 object-cover border-2 border-white shadow-md" loading="eager">
+        </div>
+      </div>
+      <div class="flex flex-col items-center sm:items-start justify-center sm:ml-10">
+        <div class="text-center sm:text-left">
+          <h1 class="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-yellow-400 via-orange-400 to-pink-500 bg-clip-text text-transparent my-2 fade-in">
+            Spend Mukesh Ambani's Money
+          </h1>
+        </div>
+        <div class="flex items-center mt-1 mb-3">
+          <span class="inline-block text-base text-gray-600 font-semibold mr-2">India's Richest Man <span class="indian-badge"> ðŸ‡®ðŸ‡³ IN </span></span>
+          <span class="text-xs px-2 bg-yellow-50 rounded-full shadow-sm border border-yellow-100 ml-2 text-cyan-900">Net Worth: <span id="initBalanceStat">â‚¹98,00,00,00,000</span> <i class="fa fa-indian-rupee-sign text-yellow-500"></i></span>
+        
+      </div>
+    </div>
+
+    <!-- Balance Display -->
+    <div class="flex flex-col items-center my-5">
+      <div class="flex items-center justify-center mb-2">
+        <i class="fa-solid fa-indian-rupee-sign text-2xl text-yellow-500 mr-3 spin"></i>
+        <span id="balance" class="money text-4xl sm:text-5xl font-bold text-teal-800 fade-in">â‚¹98,00,00,00,000</span>
+      </div>
+      <div class="text-md text-gray-600 font-semibold">Your Balance</div>
+    </div>
+
+    <!-- Item Grid (3 per row md, 2 per sm) -->
+    <div id="items" class="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-7 mt-6 fade-in relative">
+      <!-- Dynamically injected -->
+    </div>
+
+    <!-- Chart and stats -->
+    <div class="mt-12 bg-white rounded-2xl shadow-2xl p-6 ring-2 ring-yellow-50">
+      <h2 class="font-bold text-xl mb-4 flex items-center text-orange-700">
+        <i class="fa-solid fa-chart-pie text-pink-400 mr-2"></i>
+        Your Spending Stats
+      </h2>
+      <canvas id="spentChart" height="118"></canvas>
+      <div class="chart-legend" id="topItemsLegend"></div>
+    </div>
+
+   
+    
+  </div>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script>
+    // Items List (Indian + ultra luxury & pop)
+    const items = [
+      // Indian Cars & Traffic
+      {
+        name: "Maruti Suzuki Alto K10",
+        price: 490000,
+        img: "https://imgd.aeplcdn.com/664x374/cw/ec/27114/Maruti-Suzuki-Alto-K10-Exterior-83149.jpg",
+        desc: "Best-selling Indian hatchback.",
+        tag: "Indian"
+      },
+      {
+        name: "Royal Enfield Bullet 350",
+        price: 195000,
+        img: "https://imgd.aeplcdn.com/664x374/n/cw/ec/37333/right-front-three-quarter1.jpeg",
+        desc: "India's legendary iconic bike.",
+        tag: "Indian"
+      },
+      {
+        name: "Toyota Fortuner",
+        price: 5000000,
+        img: "https://imgd-ct.aeplcdn.com/664x374/n/cw/ec/44781/fortuner-exterior-right-front-three-quarter.jpeg",
+        desc: "Indian SUV dream.",
+        tag: "Indian"
+      },
+      {
+        name: "Mumbai Auto Rickshaw",
+        price: 300000,
+        img: "https://upload.wikimedia.org/wikipedia/commons/f/f0/Auto_rickshaw_Bangalore_India.jpg",
+        desc: "For city chaos rides!",
+        tag: "Indian"
+      },
+      // Places & Experiences
+      {
+        name: "Stay at Taj Lake Palace, Udaipur (1 night)",
+        price: 70000,
+        img: "https://www.tajhotels.com/content/dam/luxury/hotels/Taj_Lake_Palace_Udaipur/images/gallery/16x5/TLP-Exterior-Hero-16x5.jpg",
+        desc: "Famous luxury palace hotel.",
+        tag: "Indian"
+      },
+      {
+        name: "Dinner at Bukhara, Delhi (table for 8)",
+        price: 22000,
+        img: "https://imgmedia.lbb.in/media/2020/08/5f3f30eac20e464dab3b369b_1597920490759.jpg",
+        desc: "India's iconic 5-star restaurant.",
+        tag: "Indian"
+      },
+      {
+        name: "Antilia (Mumbai, entire building)",
+        price: 16750000000,
+        img: "https://goqii.com/blog/wp-content/uploads/2021/04/Antilia-e1618329027728.jpg",
+        desc: "Ambani's literal multi-billion home.",
+        tag: "Indian"
+      },
+      // Cultural & Fun
+      {
+        name: "Sabyasachi Designer Lehenga",
+        price: 850000,
+        img: "https://cdn.sabyasachi.com/media/catalog/product/cache/1/image/1200x/17f82f742ffe127f42dca9de82fb58b1/1/-/1-54_8.jpg",
+        desc: "Iconic Indian bridal couture.",
+        tag: "Indian"
+      },
+      {
+        name: "Tanishq Diamond Necklace",
+        price: 350000,
+        img: "https://staticimg.tanishq.co.in/media/catalog/product/2/1/21I3N3DVKAA00_1.jpg",
+        desc: "Dazzling Indian luxury jewelry.",
+        tag: "Indian"
+      },
+      {
+        name: "Indian Big Fat Wedding",
+        price: 20000000,
+        img: "https://www.wedmegood.com/images/wmg/sections/new-home/realweddings-collage-2@2x.jpg",
+        desc: "One week, 800 guests, Bollywood!",
+        tag: "Indian"
+      },
+      {
+        name: "ISRO Satellite Launch",
+        price: 850000000,
+        img: "https://images.news18.com/ibnlive/uploads/2021/09/isro-pslv-c-52-launch-16390288453x2.jpg",
+        desc: "Your own Indian rocket to space!",
+        tag: "Indian"
+      },
+      // Indian Daily Life
+      {
+        name: "Chai Tapri (franchise)",
+        price: 60000,
+        img: "https://images.lbb.in/media/2021/05/6094bea6bcaf1a6943e2c545_1620296870079.jpg",
+        desc: "Tea stand for the masses.",
+        tag: "Indian"
+      },
+      {
+        name: "Masala Dosa at Bangalore Darshini",
+        price: 150,
+        img: "https://www.archanaskitchen.com/images/archanaskitchen/1-Author/Shaheen_Ali/crispy_masala_dosa_recipe.jpg",
+        desc: "Best South Indian breakfast.",
+        tag: "Indian"
+      },
+      {
+        name: "Amul Butter (1 tonne!)",
+        price: 560000,
+        img: "https://www.dairyreporter.com/var/wrbm_gb_food_pharma/storage/images/_aliases/wrbm_large/publications/food-beverage-nutrition/dairyreporter.com/news/business/amul-announces-milk-price-hike2019/10693972-1-eng-GB/Amul-announces-milk-price-hike2023.jpg",
+        desc: "India runs on this butter.",
+        tag: "Indian"
+      },
+      {
+        name: "Indian Premier League Team (1 year)",
+        price: 950000000,
+        img: "https://assets.indiatvnews.com/photo-gallery/2022/03/ipl-trophy-2021-1646461345.jpg",
+        desc: "You own an IPL franchise for a season!",
+        tag: "Indian"
+      },
+      // Bollywood and Entertainment
+      {
+        name: "Produce Bollywood Blockbuster",
+        price: 2250000000,
+        img: "https://static-koimoi.akamaized.net/wp-content/new-galleries/2024/04/bollywood-box-office-female-led-movies-001.jpg",
+        desc: "From casting to music, all glam.",
+        tag: "Indian"
+      },
+      {
+        name: "A.R. Rahman Private Concert",
+        price: 18000000,
+        img: "https://static.toiimg.com/thumb/msid-72691922,imgsize-157416,width-400,resizemode-4/72691922.jpg",
+        desc: "Legend of Indian music at your party.",
+        tag: "Indian"
+      },
+      // Tech
+      {
+        name: "Samsung Galaxy S24 Ultra",
+        price: 135000,
+        img: "https://images.samsung.com/is/image/samsung/p6pim/in/sm-s928bzkcinu/gallery/in-galaxy-s24-ultra-s928-sm-s928bzkcinu-536048601?$684_547_PNG$",
+        desc: "Top Indian mobile!",
+        tag: "Indian"
+      },
+      // Undisputed Indian Pop
+      {
+        name: "Fan of Mumbai Indians (IPL)",
+        price: 80,
+        img: "https://static.india.com/wp-content/uploads/2019/03/Mumbai-Indians-Logo-1.jpg",
+        desc: "Cheer Ambani's IPL team!",
+        tag: "Indian"
+      },
+      // Luxury International
+      {
+        name: "Bentley Flying Spur",
+        price: 49200000,
+        img: "https://cdni.autocarindia.com/ExtraImages/20210705063640_Bentley_Flying_Spur_Hybrid_front_action.jpg",
+        desc: "Ultra luxury British sedan."
+      },
+      {
+        name: "Lamborghini Huracan EVO",
+        price: 41000000,
+        img: "https://cdni.autocarindia.com/ExtraImages/20190909024349_Lamborghini_Huracan_Evo_India_2.jpg",
+        desc: "Classic Indian supercar dream."
+      },
+      {
+        name: "Rolex Daytona (18k gold)",
+        price: 2950000,
+        img: "https://content.rolex.com/dam/collection/collection-page/daytona/rolex-daytona-beauty-shot-rose-gold-m116505-0013-portrait.jpg",
+        desc: "Luxury watch legend."
+      },
+      {
+        name: "Yacht (Sunseeker 131)",
+        price: 220000000,
+        img: "https://www.sunseeker.com/media/qgcpanec/sunseeker-131-hero.jpg",
+        desc: "Sail like a billionaire."
+      },
+      {
+        name: "Private Jet (Gulfstream G700)",
+        price: 600000000,
+        img: "https://www.gulfstream.com/wp-content/uploads/2023/05/G700-Exterior-8.jpg",
+        desc: "Fast, global, private."
+      }
+    ];
+
+    // State
+    let balance = 98000000000, spent = 0;
+    let state = {};
+    items.forEach((itm,i)=>state[i]=0);
+
+    // Format as crore/lakh/â‚¹
+    function fmtINR(n) {
+      // Crore, lakh, thousand format
+      if (n >= 1e7) return "â‚¹" + (n/1e7).toLocaleString("en-IN",{maximumFractionDigits:2}) + " Cr";
+      if (n >= 1e5) return "â‚¹" + (n/1e5).toLocaleString("en-IN",{maximumFractionDigits:1}) + " L";
+      return "â‚¹" + n.toLocaleString("en-IN");
+    }
+
+    // Render Items
+    function renderItems() {
+      let h = '';
+      items.forEach((item,i)=>{
+        h += `
+        <div class="item-card bg-white rounded-2xl shadow p-5 flex flex-col items-center relative group ${item.price>500000000?'super-card':''}">
+          <img src="${item.img}" class="item-img mb-3 border shadow-sm" alt="${item.name}">
+          <div class="font-extrabold text-base sm:text-lg text-center my-1">${item.name}${item.tag?'<span class="indian-badge">'+item.tag+'</span>':''}</div>
+          <div class="text-xs text-gray-500 mb-2 text-center">${item.desc||""}</div>
+          <div class="text-sm font-bold text-teal-700 mb-2">${fmtINR(item.price)}</div>
+          <div class="flex space-x-3 items-center">
+            <button onclick="changeItem(${i},-1)" class="sell-btn px-3 py-1 rounded bg-red-100 text-red-700 font-bold text-lg focus:outline-none transition group-hover:bg-red-200"><i class="fas fa-minus"></i></button>
+            <span id="c${i}" class="mx-2 text-2xl font-bold text-gray-700">${state[i]}</span>
+            <button onclick="changeItem(${i},1)" class="buy-btn px-3 py-1 rounded bg-green-100 text-green-700 font-bold text-lg focus:outline-none transition group-hover:bg-green-300"><i class="fas fa-plus"></i></button>
+          </div>
+        </div>
+        `;
+      });
+      document.getElementById('items').innerHTML = h;
+    }
+
+    // Update Balance
+    function updateBalance() {
+      document.getElementById('balance').textContent = fmtINR(balance);
+    }
+    // Update Initial Balance Display in subtitle
+    function updateInitStat() { document.getElementById('initBalanceStat').innerText = fmtINR(98000000000)}
+
+    // Buy/Sell
+    function changeItem(idx, amt) {
+      const price = items[idx].price;
+      if (amt > 0 && balance >= price) {
+        state[idx]+=1; spent+=price; balance-=price;
+      } else if (amt < 0 && state[idx]>0) {
+        state[idx]-=1; spent-=price; balance+=price;
+      }
+      document.getElementById('c'+idx).textContent = state[idx];
+      updateBalance();
+      updateChart();
+      updateTopItemsLegend();
+    }
+
+    // Chart.js for stats
+    let chart, labels=[];
+    function setupChart() {
+      labels = items.map(itm=>itm.name);
+      const ctx = document.getElementById('spentChart');
+      chart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Spent',
+            data: items.map((itm,i)=>state[i]*itm.price),
+            backgroundColor: [
+              '#fcd34d','#fb923c','#f87171','#38bdf8','#fbbf24','#bef264',
+              '#fde68a','#c4b5fd','#60a5fa','#b7fcc3','#f472b6','#d4fc79',
+              '#818cf8','#c026d3','#f7941d', '#6ee7b7','#fdba74','#a3a3f7',
+              '#34d399','#a7f3d0','#ffa07a','#bdb2fa','#ff7c43'
+            ],
+            borderWidth: 0.6,
+          }]
+        },
+        options: {
+          plugins: {
+            legend: { display: false },
+            tooltip: { enabled: true }
+          }
+        }
+      });
+    }
+    function updateChart() {
+      chart.data.datasets[0].data = items.map((itm,i)=>state[i]*itm.price);
+      chart.update();
+    }
+
+    // Extra: Show top 3 spend categories, and percent spent
+    function updateTopItemsLegend() {
+      let spentArr = items.map((itm,i)=>({name:itm.name, spent:state[i]*itm.price, tag:itm.tag}));
+      spentArr = spentArr.filter(s=>s.spent>0);
+      spentArr.sort((a,b)=>b.spent-a.spent);
+      let legend = '';
+      if (spentArr.length===0) { legend = `<span class="italic text-gray-400">No spending yet. Try buying luxury or Indian classics!</span>`; }
+      else {
+        spentArr.slice(0,3).forEach((it,ix)=>{
+          legend += `<span class="mr-8">${ix===0?'<i class="fa fa-crown text-amber-400 mr-1"></i>':''}<b>${it.name}</b>: <span class="text-orange-600">${fmtINR(it.spent)}</span></span>`;
+        });
+        legend += `<span class="float-right text-green-700 font-semibold">Total Spent: ${fmtINR(spent)}</span>`;
+      }
+      document.getElementById('topItemsLegend').innerHTML = legend;
+    }
+
+    // Setup + initial
+    renderItems();
+    updateBalance();
+    updateInitStat();
+    setTimeout(()=>{setupChart(); updateTopItemsLegend();}, 400);
+
+  </script>
+</body>
+</html>
