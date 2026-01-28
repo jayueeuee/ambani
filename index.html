@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MSBTE Management (315301) MCQ Practice – Unit 1 All TLOs</title>
+  <title>MSBTE Management (315301) Full MCQ Practice – Unit 1 & 2</title>
   <style>
     body {
       font-family: Arial, Helvetica, sans-serif;
@@ -44,12 +44,12 @@
     .score-average { background: #fefce8; color: #854d0e; border: 2px solid #facc15; }
     .score-poor    { background: #fef2f2; color: #991b1b; border: 2px solid #ef4444; }
 
-    .section-title {
+    .unit-title {
       color: #1e40af;
-      font-size: 1.4rem;
-      margin: 45px 0 20px;
-      border-bottom: 2px solid #3b82f6;
-      padding-bottom: 8px;
+      font-size: 1.5rem;
+      margin: 50px 0 25px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid #3b82f6;
     }
     .question {
       margin-bottom: 28px;
@@ -79,9 +79,9 @@
     }
     .submit-btn {
       display: block;
-      margin: 35px auto;
-      padding: 14px 50px;
-      font-size: 1.1rem;
+      margin: 40px auto;
+      padding: 14px 60px;
+      font-size: 1.15rem;
       background: #16a34a;
       color: white;
       border: none;
@@ -106,7 +106,7 @@
 
 <div class="container">
   <h1>Management (315301) MCQ Practice</h1>
-  <p class="subtitle">Maharashtra State Board of Technical Education – Unit 1 All Questions</p>
+  <p class="subtitle">Maharashtra State Board of Technical Education – Unit 1 & Unit 2</p>
 
   <div id="score-container"></div>
 
@@ -117,6 +117,7 @@
 
 <script>
 const questions = [
+  // ───────────────────── Unit 1 Questions ─────────────────────
   // TLO 1.2
   { q: "The function of management that involves setting goals and deciding on future actions is called?", opts: ["a) Organizing", "b) Planning", "c) Leading", "d) Controlling"], ans: "b) Planning" },
   { q: "The primary objective of management in an organization is to achieve?", opts: ["a) Employee promotions", "b) Higher salaries for managers", "c) Business goals efficiently", "d) Product discounts for customers"], ans: "c) Business goals efficiently" },
@@ -167,17 +168,68 @@ const questions = [
   { q: "The impact of strong team management on an organization includes ______.", opts: ["a) Decreasing productivity", "b) Improving efficiency and employee satisfaction", "c) Increasing workplace conflicts", "d) Removing the need for leadership"], ans: "b) Improving efficiency and employee satisfaction" },
   { q: "A manager handling a dispute between two employees by redistributing workload fairly demonstrates ______.", opts: ["a) Conflict resolution", "b) Negotiation skills", "c) Leadership", "d) Feedback"], ans: "a) Conflict resolution" },
   { q: "Constructive feedback should be ______.", opts: ["a) Negative and discouraging", "b) Specific, timely, and solution-focused", "c) Avoided in a professional setting", "d) General and vague"], ans: "b) Specific, timely, and solution-focused" },
-  { q: "The leadership quality that involves setting a vision and leading by example contributes to ______.", opts: ["a) Employee disengagement", "b) Organizational success", "c) Increased conflicts", "d) Lack of motivation"], ans: "b) Organizational success" }
+  { q: "The leadership quality that involves setting a vision and leading by example contributes to ______.", opts: ["a) Employee disengagement", "b) Organizational success", "c) Increased conflicts", "d) Lack of motivation"], ans: "b) Organizational success" },
+
+  // ───────────────────── Unit 2 Questions ─────────────────────
+  { q: "______ is primary goal of brainstorming.", opts: ["a) To find a single best solution", "b) To generate a large number of ideas without judgment", "c) To analyze existing ideas systematically", "d) To criticize and refine ideas immediately"], ans: "b) To generate a large number of ideas without judgment" },
+  { q: "______ is NOT a rule of traditional brainstorming.", opts: ["a) Encourage wild ideas", "b) Defer judgment", "c) Critique ideas immediately", "d) Aim for quantity over quality"], ans: "c) Critique ideas immediately" },
+  { q: "The checklist technique is primarily used to……………", opts: ["a) Generate random ideas", "b) Evaluate ideas systematically using a predefined list of questions", "c) Reverse an existing idea for better innovation", "d) Reduce the number of ideas generated in brainstorming"], ans: "b) Evaluate ideas systematically using a predefined list of questions" },
+  { q: "______ is true about reverse brainstorming.", opts: ["a) It is used to generate only positive ideas", "b) It focuses on identifying ways to solve a problem", "c) It involves identifying ways to create problems rather than solving them", "d) It limits the number of participants in idea generation"], ans: "c) It involves identifying ways to create problems rather than solving them" },
+  { q: "Morphological analysis is best suited for problems that………..", opts: ["a) Have only one correct solution", "b) Can be broken down into independent parameters", "c) Do not require creative input", "d) Are solved best using a checklist"], ans: "b) Can be broken down into independent parameters" },
+  { q: "In the Six Thinking Hats technique, the Green Hat represents:……….", opts: ["a) Creativity and new ideas", "b) Emotional perspective", "c) Critical judgment", "d) Facts and data"], ans: "a) Creativity and new ideas" },
+  { q: "______ is the role of the Black Hat in the Six Thinking Hats method.", opts: ["a) To generate new ideas", "b) To look at the problem with optimism", "c) To identify risks, weaknesses, and potential problems", "d) To encourage emotional viewpoints"], ans: "c) To identify risks, weaknesses, and potential problems" },
+  { q: "______ creativity technique involves systematically varying parameters of a problem to explore new solutions.", opts: ["a) Brainstorming", "b) Morphological analysis", "c) Checklist method", "d) Reverse brainstorming"], ans: "b) Morphological analysis" },
+  { q: "In the Six Thinking Hats method, the Red Hat is associated with…………", opts: ["a) Logic and facts", "b) Caution and risk assessment", "c) Emotions and intuition", "d) Creativity and innovation"], ans: "c) Emotions and intuition" },
+  { q: "______ is main advantage of using the checklist technique in creativity.", opts: ["a) It limits the number of ideas for better focus", "b) It encourages rapid and random idea generation", "c) It provides a structured way to refine and expand ideas", "d) It prevents mistakes by following strict rules"], ans: "c) It provides a structured way to refine and expand ideas" },
+  { q: "______ is the first stage in the New Product Development (NPD) process.", opts: ["a) Market Testing", "b) Idea Generation", "c) Product Development", "d) Commercialization"], ans: "b) Idea Generation" },
+  { q: "______ is NOT a source of idea generation for new products.", opts: ["a) Customers", "b) Competitors", "c) Government Regulations", "d) Employee Layoffs"], ans: "d) Employee Layoffs" },
+  { q: "______ is the primary goal of concept testing in NPD.", opts: ["a) To test the final product in the market", "b) To gather feedback on the product idea from potential customers", "c) To create a prototype for testing", "d) To analyze production costs"], ans: "b) To gather feedback on the product idea from potential customers" },
+  { q: "______ stage in the NPD process involves developing a working prototype.", opts: ["a) Idea Screening", "b) Concept Development", "c) Business Analysis", "d) Product Development"], ans: "d) Product Development" },
+  { q: "The final stage of the NPD process is:………", opts: ["A) Commercialization", "B) Product Testing", "C) Business Analysis", "D) Idea Screening"], ans: "A) Commercialization" },
+  { q: "A company uses a controlled launch in a limited market to evaluate product performance before full-scale introduction. This process is called:……….", opts: ["a) Market Penetration", "b) Test Marketing", "c) Product Development", "d) Idea Screening"], ans: "b) Test Marketing" },
+  { q: "______ is a risk associated with new product development.", opts: ["a) High development costs", "b) Market acceptance uncertainty", "c) Competitive imitation", "d) All of the above"], ans: "d) All of the above" },
+  { q: "______ is the primary goal of change management in an organization?", opts: ["a. To eliminate the need for change", "b. To manage and implement change smoothly and effectively", "c. To resist and slow down changes in the company", "d. To reduce employee involvement in change initiatives"], ans: "b. To manage and implement change smoothly and effectively" },
+  { q: "______ of the following is NOT a stage in Kurt Lewin‟s Change Management Model.", opts: ["a) Unfreezing", "b) Freezing", "c) Changing", "d) Refreezing"], ans: "b) Freezing" },
+  { q: "According to Kotter‟s 8-Step Change Model, the first step in implementing change is to:…………..", opts: ["a) Develop a vision for change", "b) Communicate the change vision", "c) Establish a sense of urgency", "d) Empower employees for broad-based action"], ans: "c) Establish a sense of urgency" },
+  { q: "Resistance to change in organizations can be caused by……………", opts: ["a) Fear of the unknown", "b) Lack of trust in leadership", "c) Poor communication", "d) All of the above"], ans: "d) All of the above" },
+  { q: "In the ADKAR Model of Change, \"D\" stand for…………", opts: ["a) Development", "b) Desire", "c) Decision", "d) Direction"], ans: "b) Desire" },
+  { q: "______ is a strategy to overcome resistance to change.", opts: ["a) Avoiding employee feedback", "b) Communicating the benefits of change clearly", "c) Implementing changes without informing employees", "d) Forcing employees to accept change"], ans: "b) Communicating the benefits of change clearly" },
+  { q: "______ best defines Organizational Change.", opts: ["a) A minor shift in daily operations", "b) The process of modifying structures, strategies, and procedures within an organization", "c) A temporary adjustment that does not impact business goals", "d) A method to avoid market competition"], ans: "b) The process of modifying structures, strategies, and procedures within an organization" },
+  { q: "Change agents in an organization are responsible for…………….", opts: ["a) Preventing change from happening", "b) Supporting and leading the change process", "c) Resisting management decisions", "d) Only informing employees about change without involvement"], ans: "b) Supporting and leading the change process" },
+  { q: "______ is the primary role of product management.", opts: ["a) Managing employees in production units", "b) Overseeing the development, launch, and success of a product", "c) Handling only the marketing of a product", "d) Ensuring that products are produced at the lowest cost"], ans: "b) Overseeing the development, launch, and success of a product" },
+  { q: "______ is best describes product management.", opts: ["a) A process focused only on product design", "b) A multidisciplinary function that involves strategy, development, and marketing", "c) A department responsible for supply chain management", "d) A function that works only with sales teams"], ans: "b) A multidisciplinary function that involves strategy, development, and marketing" },
+  { q: "______ is primarily responsible for defining the vision and strategy of a product.", opts: ["a) Product Manager", "b) Production Supervisor", "c) Sales Executive", "d) Finance Manager"], ans: "a) Product Manager" },
+  { q: "______ is NOT a key responsibility of a product manager?", opts: ["a) Defining product vision", "b) Conducting market research", "c) Setting financial policies", "d) Coordinating with development teams"], ans: "c) Setting financial policies" },
+  { q: "A product lifecycle includes ........................ stages.", opts: ["a) Introduction, Growth, Maturity, Decline", "b) Planning, Execution, Profit, Loss", "c) Research, Development, Selling, Disposal", "d) Creation, Testing, Selling, Discontinuation"], ans: "a) Introduction, Growth, Maturity, Decline" },
+  { q: "Sustainable product design primarily aims to……………….", opts: ["a) Reduce environmental impact while ensuring profitability", "b) Maximize short-term profits", "c) Use only expensive eco-friendly materials", "d) Increase production speed regardless of consequences"], ans: "a) Reduce environmental impact while ensuring profitability" },
+  { q: "______ is a key factor in designing a sustainable product.", opts: ["a) Durability and recyclability", "b) Short-term cost savings", "c) Increasing packaging waste", "d) Focusing only on aesthetics"], ans: "a) Durability and recyclability" },
+  { q: "In sustainable design, the term “Cradle-to-Cradle” refers to……………..", opts: ["a) A design approach that ensures products are fully recyclable or reusable", "b) A method for reducing production costs", "c) A sales strategy for increasing profits", "d) A process for handling product failures"], ans: "a) A design approach that ensures products are fully recyclable or reusable" },
+  { q: "______ is NOT a strategic step in sustainable product design.", opts: ["a) Using renewable materials", "b) Minimizing energy consumption", "c) Increasing planned obsolescence", "d) Implementing eco-friendly manufacturing processes"], ans: "c) Increasing planned obsolescence" },
+  { q: "The concept of a Circular Economy in product management focuses on…………", opts: ["a) Reducing, reusing, and recycling materials", "b) Creating products that cannot be repaired", "c) Increasing product disposal rates", "d) Selling products only in limited markets"], ans: "a) Reducing, reusing, and recycling materials" },
+  { q: "Life Cycle Assessment (LCA) is important in sustainable product design because…….", opts: ["a) It helps analyze the environmental impact of a product from production to disposal", "b) It focuses only on marketing strategies", "c) It ensures the product is designed at the lowest cost possible", "d) It is used only for government regulations"], ans: "a) It helps analyze the environmental impact of a product from production to disposal" },
+  { q: "______ best describes Eco-Design in product management.", opts: ["a) A design process that integrates environmental considerations into every stage of a product‘s lifecycle", "b) A method to reduce product quality for cost savings", "c) A short-term strategy to improve sales", "d) A focus on using only natural colors in product packaging"], ans: "a) A design process that integrates environmental considerations into every stage of a product‘s lifecycle" },
+  { q: "______ is an example of an eco-friendly packaging approach.", opts: ["a) Using single-use plastic for cost reduction", "b) Designing packaging that is biodegradable and reusable", "c) Increasing package size to make products look bigger", "d) Adding extra layers of plastic wrapping for branding"], ans: "b) Designing packaging that is biodegradable and reusable" },
+  { q: "______ is the purpose of conducting market research in sustainable product management.", opts: ["a) To understand consumer preferences and sustainability expectations", "b) To determine the cheapest way to produce a product", "c) To focus only on product pricing strategies", "d) To reduce investment in research and development"], ans: "a) To understand consumer preferences and sustainability expectations" },
+  { q: "______ best describes Extended Producer Responsibility (EPR).", opts: ["a) Manufacturers are responsible for the entire lifecycle of their products, including disposal and recycling", "b) Consumers are solely responsible for recycling their purchases", "c) Companies are not required to consider the environmental impact of their products", "d) EPR is a voluntary program with no legal implications"], ans: "a) Manufacturers are responsible for the entire lifecycle of their products, including disposal and recycling" }
 ];
 
 const totalQuestions = questions.length;
-let scoreShown = false;
 
 const quizDiv = document.getElementById("quiz");
 const scoreContainer = document.getElementById("score-container");
 
-// Render questions
+// Render all questions with unit separation
+let currentUnit = "";
 questions.forEach((item, i) => {
+  let unit = i < 52 ? "Unit 1" : "Unit 2";  // Adjust threshold based on Unit 1 count (~52 questions)
+  if (unit !== currentUnit) {
+    const title = document.createElement("div");
+    title.className = "unit-title";
+    title.textContent = unit;
+    quizDiv.appendChild(title);
+    currentUnit = unit;
+  }
+
   const qDiv = document.createElement("div");
   qDiv.className = "question";
   qDiv.innerHTML = `
@@ -185,7 +237,7 @@ questions.forEach((item, i) => {
     <div class="options">
       ${item.opts.map(opt => `
         <label>
-          <input type="radio" name="q${i}" value="${opt}">
+          <input type="radio" name="q${i}" value="${opt.replace(/"/g, '&quot;')}">
           ${opt}
         </label>
       `).join('')}
@@ -220,20 +272,18 @@ function checkAnswers() {
     }
   });
 
-  // Show score
   const percentage = Math.round((correctCount / totalQuestions) * 100);
   let className = "score-poor";
   if (percentage >= 60) className = "score-good";
   else if (percentage >= 40) className = "score-average";
 
   scoreContainer.innerHTML = `
-    Your Score: <span style="font-size:1.5rem">${correctCount}/${totalQuestions}</span> 
+    Your Score: <span style="font-size:1.6rem">${correctCount}/${totalQuestions}</span> 
     (${percentage}%)
   `;
   scoreContainer.className = `score-container ${className}`;
   scoreContainer.style.display = "block";
 
-  // Scroll to top so score is visible
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 </script>
