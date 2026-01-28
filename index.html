@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MSBTE Management (315301) MCQ Practice – Unit 1 All TLOs</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f7fa;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #1e40af;
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      text-align: center;
+      color: #64748b;
+      margin-bottom: 20px;
+    }
+    #score-container {
+      display: none;
+      text-align: center;
+      margin: 20px 0 30px;
+      padding: 16px;
+      border-radius: 8px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .score-good    { background: #ecfdf5; color: #065f46; border: 2px solid #10b981; }
+    .score-average { background: #fefce8; color: #854d0e; border: 2px solid #facc15; }
+    .score-poor    { background: #fef2f2; color: #991b1b; border: 2px solid #ef4444; }
+
+    .section-title {
+      color: #1e40af;
+      font-size: 1.4rem;
+      margin: 45px 0 20px;
+      border-bottom: 2px solid #3b82f6;
+      padding-bottom: 8px;
+    }
+    .question {
+      margin-bottom: 28px;
+      padding: 18px;
+      background: #f8fafc;
+      border-radius: 8px;
+      border-left: 5px solid #3b82f6;
+    }
+    .q-title {
+      font-weight: bold;
+      margin-bottom: 12px;
+      font-size: 1.05rem;
+    }
+    .options label {
+      display: block;
+      margin: 8px 0;
+      padding: 10px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      background: white;
+      border: 1px solid #e2e8f0;
+      transition: all 0.15s;
+    }
+    .options label:hover {
+      background: #eff6ff;
+      border-color: #60a5fa;
+    }
+    .submit-btn {
+      display: block;
+      margin: 35px auto;
+      padding: 14px 50px;
+      font-size: 1.1rem;
+      background: #16a34a;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .submit-btn:hover {
+      background: #15803d;
+    }
+    .result {
+      margin-top: 10px;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-weight: 500;
+      display: none;
+    }
+    .correct   { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+    .incorrect { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Management (315301) MCQ Practice</h1>
+  <p class="subtitle">Maharashtra State Board of Technical Education – Unit 1 All Questions</p>
+
+  <div id="score-container"></div>
+
+  <div id="quiz"></div>
+
+  <button class="submit-btn" onclick="checkAnswers()">Submit All Answers</button>
+</div>
+
+<script>
+const questions = [
+  // TLO 1.2
+  { q: "The function of management that involves setting goals and deciding on future actions is called?", opts: ["a) Organizing", "b) Planning", "c) Leading", "d) Controlling"], ans: "b) Planning" },
+  { q: "The primary objective of management in an organization is to achieve?", opts: ["a) Employee promotions", "b) Higher salaries for managers", "c) Business goals efficiently", "d) Product discounts for customers"], ans: "c) Business goals efficiently" },
+  { q: "The characteristic of management that emphasizes its relevance across industries, governments, and NGOs is known as?", opts: ["a) Universal application", "b) Profit maximization", "c) Workforce specialization", "d) Limited adaptability"], ans: "a) Universal application" },
+  { q: "The management function that ensures tasks are completed as planned by monitoring and correcting deviations is?", opts: ["a) Organizing", "b) Leading", "c) Planning", "d) Controlling"], ans: "d) Controlling" },
+  { q: "The process of arranging resources like manpower, materials, and finances in a structured manner refers to?", opts: ["a) Organizing", "b) Decision-making", "c) Innovation", "d) Negotiation"], ans: "a) Organizing" },
+
+  // TLO 1.3
+  { q: "Scientific Management aims to improve workforce efficiency using approach?", opts: ["a) Traditional managerial discretion", "b) Scientific methods and logical principles", "c) Employee intuition and experience", "d) Personal opinions of managers"], ans: "b) Scientific methods and logical principles" },
+  { q: "______ is regarded as the Father of Scientific Management?", opts: ["a) Henri Fayol", "b) Elton Mayo", "c) F.W. Taylor", "d) Max Weber"], ans: "c) F.W. Taylor" },
+  { q: '"Mental Revolution" in Taylor’s Scientific Management refers to a shift in thinking between?', opts: ["a) Customers and suppliers", "b) Managers and workers", "c) Government and industries", "d) Investors and board members"], ans: "b) Managers and workers" },
+  { q: "The principle that focuses on employees being assigned work according to their mental and physical capabilities is called?", opts: ["a) Unity of Command", "b) Development of Workers to their Greatest Efficiency and Prosperity", "c) Centralization of Authority", "d) Stability of Tenure"], ans: "b) Development of Workers to their Greatest Efficiency and Prosperity" },
+  { q: "The principle that suggests employees should report to only one superior is called?", opts: ["a) Unity of Direction", "b) Unity of Command", "c) Scalar Chain", "d) Centralization"], ans: "b) Unity of Command" },
+  { q: "______ principle highlights the need for fair treatment and respect for all employees?", opts: ["a) Discipline", "b) Authority and Responsibility", "c) Equity", "d) Initiative"], ans: "c) Equity" },
+  { q: "According to Fayol, ______ principle ensures employees feel secure in their jobs, leading to better performance?", opts: ["a) Stability of Tenure", "b) Order", "c) Division of Work", "d) Esprit de Corps"], ans: "a) Stability of Tenure" },
+  { q: "The principle that promotes team spirit and unity among employees is called?", opts: ["a) Scalar Chain", "b) Initiative", "c) Remuneration", "d) Esprit de Corps"], ans: "d) Esprit de Corps" },
+  { q: "A factory replaces its outdated production techniques with scientifically tested methods to reduce waste and increase output. This best represents principle", opts: ["a) Science, Not Rule of Thumb", "b) Unity of Command", "c) Initiative", "d) Centralization"], ans: "a) Science, Not Rule of Thumb" },
+  { q: "A company with multiple departments encourages employees to coordinate their efforts instead of working separately. This best represents principle.", opts: ["a) Division of Work", "b) Authority and Responsibility", "c) Unity of Direction", "d) Remuneration"], ans: "c) Unity of Direction" },
+
+  // TLO 1.4
+  { q: "______ level of management is responsible for the survival and welfare of an organization.", opts: ["a) Middle Level Management", "b) Top Level Management", "c) Lower Level Management", "d) Supervisory Level Management"], ans: "b) Top Level Management" },
+  { q: "______ acts as a link between the top and lower levels of management.", opts: ["a) Supervisory Level Management", "b) Middle Level Management", "c) Board of Directors", "d) Operational Workers"], ans: "b) Middle Level Management" },
+  { q: "______ is responsible for direct interaction with the workforce.", opts: ["a) Middle Level Management", "b) Top Level Management", "c) Lower Level Management", "d) Strategic Management Team"], ans: "c) Lower Level Management" },
+  { q: "______ is a function of lower-level management.", opts: ["a) Formulating company vision", "b) Representing workers' grievances", "c) Setting company-wide financial policies", "d) Approving mergers and acquisitions"], ans: "b) Representing workers' grievances" },
+  { q: "______ describes the role of operational managers in task assignment.", opts: ["a) They only assign tasks without supervision", "b) They guide workers and assist in problem-solving", "c) They focus on financial planning instead of task allocation", "d) They avoid daily planning activities"], ans: "b) They guide workers and assist in problem-solving" },
+
+  // TLO 1.5
+  { q: "______ refers to the ability to recognize and understand personal emotions, thoughts, and values.", opts: ["a) Self-motivation", "b) Self-discipline", "c) Self-awareness", "d) Goal setting"], ans: "c) Self-awareness" },
+  { q: "The ability to control impulses and follow through on commitments is called ______.", opts: ["a) Time management", "b) Self-motivation", "c) Self-discipline", "d) Stress management"], ans: "c) Self-discipline" },
+  { q: "______ motivation comes from within and is driven by personal interest or satisfaction.", opts: ["a) Extrinsic", "b) Intrinsic", "c) Values-based", "d) External"], ans: "b) Intrinsic" },
+  { q: "The letter \"S\" in SMART goal setting represents ______.", opts: ["a) Specific", "b) Speed", "c) Smart", "d) Supportive"], ans: "a) Specific" },
+  { q: "The skill that helps individuals use time efficiently is ______.", opts: ["a) Self-awareness", "b) Time management", "c) Stress management", "d) Decision-making"], ans: "b) Time management" },
+  { q: "Work-life balance ensures individuals allocate adequate time for ______.", opts: ["a) Only professional tasks", "b) Work and family", "c) Work, family, health, and leisure", "d) Office work only"], ans: "c) Work, family, health, and leisure" },
+  { q: "Excessive multitasking leads to ______.", opts: ["a) Increased focus", "b) More efficiency", "c) Mental fatigue", "d) Better decision-making"], ans: "c) Mental fatigue" },
+  { q: "The reason self-motivation is important in self-management is ______.", opts: ["a) It helps in setting unrealistic goals", "b) It allows individuals to stay driven toward achieving goals", "c) It removes the need for discipline", "d) It forces people to work continuously"], ans: "b) It allows individuals to stay driven toward achieving goals" },
+  { q: "The impact of stress management on an individual includes ______.", opts: ["a) Eliminating stress completely", "b) Developing healthy coping mechanisms", "c) Increasing workplace conflicts", "d) Avoiding challenges"], ans: "b) Developing healthy coping mechanisms" },
+  { q: "The benefit of goal setting in self-management is ______.", opts: ["a) Providing direction and focus", "b) Ensuring success without effort", "c) Removing the need for decision-making", "d) Encouraging procrastination"], ans: "a) Providing direction and focus" },
+  { q: "The way to maintain proper work-life balance includes ______.", opts: ["a) Focusing only on professional responsibilities", "b) Working extra hours daily", "c) Setting boundaries and managing time effectively", "d) Ignoring personal well-being"], ans: "c) Setting boundaries and managing time effectively" },
+  { q: "A drawback of multitasking is ______.", opts: ["a) Improving productivity", "b) Enhancing accuracy in complex tasks", "c) Reducing focus and leading to errors", "d) Ensuring perfect time management"], ans: "c) Reducing focus and leading to errors" },
+
+  // TLO 1.6
+  { q: "The ability to reach mutually beneficial agreements through discussion and compromise is called ______.", opts: ["a) Leadership", "b) Conflict resolution", "c) Negotiation skills", "d) Feedback"], ans: "c) Negotiation skills" },
+  { q: "The managerial skill that involves leading, coordinating, and motivating a group is ______.", opts: ["a) Conflict resolution", "b) Team management", "c) Leadership", "d) Feedback"], ans: "b) Team management" },
+  { q: "The process of handling disputes in a fair and constructive manner is known as ______.", opts: ["a) Feedback", "b) Conflict resolution", "c) Leadership", "d) Team management"], ans: "b) Conflict resolution" },
+  { q: "Providing constructive criticism to help employees improve performance is part of ______.", opts: ["a) Leadership", "b) Feedback", "c) Negotiation", "d) Conflict resolution"], ans: "b) Feedback" },
+  { q: "The managerial skill that includes inspiring, guiding, and influencing others is ______.", opts: ["a) Team management", "b) Conflict resolution", "c) Leadership", "d) Negotiation skills"], ans: "c) Leadership" },
+  { q: "The reason negotiation skills are important in business is ______.", opts: ["a) Ensuring only one party benefits", "b) Preventing communication among stakeholders", "c) Achieving agreements that satisfy all parties", "d) Avoiding business discussions"], ans: "c) Achieving agreements that satisfy all parties" },
+  { q: "The impact of strong team management on an organization includes ______.", opts: ["a) Decreasing productivity", "b) Improving efficiency and employee satisfaction", "c) Increasing workplace conflicts", "d) Removing the need for leadership"], ans: "b) Improving efficiency and employee satisfaction" },
+  { q: "A manager handling a dispute between two employees by redistributing workload fairly demonstrates ______.", opts: ["a) Conflict resolution", "b) Negotiation skills", "c) Leadership", "d) Feedback"], ans: "a) Conflict resolution" },
+  { q: "Constructive feedback should be ______.", opts: ["a) Negative and discouraging", "b) Specific, timely, and solution-focused", "c) Avoided in a professional setting", "d) General and vague"], ans: "b) Specific, timely, and solution-focused" },
+  { q: "The leadership quality that involves setting a vision and leading by example contributes to ______.", opts: ["a) Employee disengagement", "b) Organizational success", "c) Increased conflicts", "d) Lack of motivation"], ans: "b) Organizational success" }
+];
+
+const totalQuestions = questions.length;
+let scoreShown = false;
+
+const quizDiv = document.getElementById("quiz");
+const scoreContainer = document.getElementById("score-container");
+
+// Render questions
+questions.forEach((item, i) => {
+  const qDiv = document.createElement("div");
+  qDiv.className = "question";
+  qDiv.innerHTML = `
+    <div class="q-title">${i+1}. ${item.q}</div>
+    <div class="options">
+      ${item.opts.map(opt => `
+        <label>
+          <input type="radio" name="q${i}" value="${opt}">
+          ${opt}
+        </label>
+      `).join('')}
+    </div>
+    <div class="result" id="res${i}"></div>
+  `;
+  quizDiv.appendChild(qDiv);
+});
+
+function checkAnswers() {
+  let correctCount = 0;
+
+  questions.forEach((item, i) => {
+    const res = document.getElementById(`res${i}`);
+    const sel = document.querySelector(`input[name="q${i}"]:checked`);
+
+    res.style.display = "block";
+
+    if (!sel) {
+      res.textContent = "Please select an answer!";
+      res.className = "result incorrect";
+      return;
+    }
+
+    if (sel.value === item.ans) {
+      res.textContent = "Correct!";
+      res.className = "result correct";
+      correctCount++;
+    } else {
+      res.textContent = `Incorrect! Correct answer: ${item.ans}`;
+      res.className = "result incorrect";
+    }
+  });
+
+  // Show score
+  const percentage = Math.round((correctCount / totalQuestions) * 100);
+  let className = "score-poor";
+  if (percentage >= 60) className = "score-good";
+  else if (percentage >= 40) className = "score-average";
+
+  scoreContainer.innerHTML = `
+    Your Score: <span style="font-size:1.5rem">${correctCount}/${totalQuestions}</span> 
+    (${percentage}%)
+  `;
+  scoreContainer.className = `score-container ${className}`;
+  scoreContainer.style.display = "block";
+
+  // Scroll to top so score is visible
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+</script>
+</body>
+</html>
