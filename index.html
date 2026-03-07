@@ -1,241 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>EIC CT1 MCQ Practice - AI, IoT, 5G & More</title>
-  <style>
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f4f7fa;
-      margin: 0;
-      padding: 20px;
-      color: #333;
-    }
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      background: white;
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    }
-    h1 {
-      text-align: center;
-      color: #1e40af;
-      margin-bottom: 10px;
-    }
-    .subtitle {
-      text-align: center;
-      color: #64748b;
-      margin-bottom: 20px;
-    }
-    #score-container {
-      display: none;
-      text-align: center;
-      margin: 20px 0 30px;
-      padding: 16px;
-      border-radius: 8px;
-      font-size: 1.3rem;
-      font-weight: bold;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    .score-good    { background: #ecfdf5; color: #065f46; border: 2px solid #10b981; }
-    .score-average { background: #fefce8; color: #854d0e; border: 2px solid #facc15; }
-    .score-poor    { background: #fef2f2; color: #991b1b; border: 2px solid #ef4444; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For Mansi 🐾</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap');
 
-    .question {
-      margin-bottom: 28px;
-      padding: 18px;
-      background: #f8fafc;
-      border-radius: 8px;
-      border-left: 5px solid #3b82f6;
-    }
-    .q-title {
-      font-weight: bold;
-      margin-bottom: 12px;
-      font-size: 1.05rem;
-    }
-    .options label {
-      display: block;
-      margin: 8px 0;
-      padding: 10px 14px;
-      border-radius: 6px;
-      cursor: pointer;
-      background: white;
-      border: 1px solid #e2e8f0;
-      transition: all 0.15s;
-    }
-    .options label:hover {
-      background: #eff6ff;
-      border-color: #60a5fa;
-    }
-    .submit-btn {
-      display: block;
-      margin: 40px auto;
-      padding: 14px 60px;
-      font-size: 1.15rem;
-      background: #16a34a;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    .submit-btn:hover {
-      background: #15803d;
-    }
-    .result {
-      margin-top: 10px;
-      padding: 10px 14px;
-      border-radius: 6px;
-      font-weight: 500;
-      display: none;
-    }
-    .correct   { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
-    .incorrect { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
-  </style>
+        :root {
+            --bg: #fff0f3;
+            --envelope: #ff85a1;
+            --flap: #ff4d6d;
+            --letter: #ffffff;
+            --accent: #c9184a;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--bg);
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        /* Particles for the 'Explosion' */
+        .particle {
+            position: absolute;
+            pointer-events: none;
+            z-index: 100;
+            font-size: 20px;
+        }
+
+        /* Envelope Wrapper */
+        .wrapper {
+            position: relative;
+            z-index: 10;
+            width: 300px;
+            height: 200px;
+            perspective: 1000px;
+            transition: transform 0.3s;
+        }
+
+        .envelope {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: var(--envelope);
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 15px 45px rgba(201, 24, 74, 0.3);
+        }
+
+        /* The Lid */
+        .flap {
+            position: absolute;
+            top: 0;
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-top: 110px solid var(--flap);
+            transform-origin: top;
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 5;
+        }
+
+        /* The Hidden Letter */
+        .letter {
+            position: absolute;
+            bottom: 5px;
+            left: 5%;
+            width: 90%;
+            height: 0%; /* Hidden initially */
+            background: var(--letter);
+            border-radius: 8px;
+            padding: 25px 15px;
+            text-align: center;
+            transition: all 0.8s 0.4s ease-in-out;
+            z-index: 2;
+            opacity: 0; /* Fully hidden */
+            overflow: hidden;
+        }
+
+        .letter h2 {
+            font-family: 'Dancing Script', cursive;
+            color: var(--accent);
+            margin: 0;
+            font-size: 28px;
+            border-bottom: 1px dashed #ffccd5;
+            padding-bottom: 10px;
+        }
+
+        .letter p {
+            font-size: 16px;
+            color: #444;
+            line-height: 1.8;
+            margin-top: 15px;
+        }
+
+        /* Animation when 'open' class is added */
+        body.open .flap {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+
+        body.open .letter {
+            transform: translateY(-150px);
+            height: auto;
+            min-height: 220px;
+            z-index: 10;
+            opacity: 1;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Floating Hint */
+        .hint {
+            position: fixed;
+            bottom: 50px;
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 12px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        body.open .hint { display: none; }
+
+    </style>
 </head>
-<body>
+<body onclick="handleInteraction(event)">
 
-<div class="container">
-  <h1>EIC CT1 MCQ Practice</h1>
-  <p class="subtitle">AI, IoT, 5G, Machine Learning & Related Topics</p>
+    <div class="hint">Tap to open for Mansi 🐾</div>
 
-  <div id="score-container"></div>
-
-  <div id="quiz"></div>
-
-  <button class="submit-btn" onclick="checkAnswers()">Submit All Answers</button>
-</div>
-
-<script>
-const questions = [
-  // AI History & Basics
-  { q: "Which of these schools was not among the early leaders in AI research?", opts: ["A. Dartmouth University", "B. Harvard University", "C. Massachusetts Institute of Technology", "D. Stanford University", "E. None of the above"], ans: "B. Harvard University" },
-  { q: "DARPA, the agency that has funded a great deal of American AI research, is part of the Department of:", opts: ["A. Defense", "B. Energy", "C. Education", "D. Justice", "E. None of the above"], ans: "A. Defense" },
-  { q: "The conference that launched the AI revolution in 1956 was held at:", opts: ["A. Dartmouth", "B. Harvard", "C. New York", "D. Stanford", "E. None of the above"], ans: "A. Dartmouth" },
-  { q: "What is the term used for describing the judgmental or commonsense part of problem solving?", opts: ["A. Heuristic", "B. Critical", "C. Value based", "D. Analytical", "E. None of the above"], ans: "A. Heuristic" },
-  { q: "Who is the inventor of Artificial Intelligence?", opts: ["a) Geoffrey Hinton", "b) Andrew Ng", "c) John McCarthy", "d) Jürgen Schmidhuber"], ans: "c) John McCarthy" },
-  { q: "Which of the following is an application of Artificial Intelligence?", opts: ["a) It helps to exploit vulnerabilities to secure the firm", "b) Language understanding and problem-solving (Text analytics and NLP)", "c) Easy to create a website", "d) It helps to deploy applications on the cloud"], ans: "b) Language understanding and problem-solving (Text analytics and NLP)" },
-  { q: "Artificial Intelligence has its expansion in the following application.", opts: ["A. Planning and Scheduling", "B. Game Playing", "C. Robotics", "D. All of the above"], ans: "D. All of the above" },
-  { q: "The characteristics of the computer system capable of thinking, reasoning and learning is known is", opts: ["A. machine intelligence", "B. human intelligence", "C. artificial intelligence", "D. virtual intelligence"], ans: "C. artificial intelligence" },
-  { q: "The first AI programming language was called:", opts: ["A. BASIC", "B. FORTRAN", "C. IPL", "D. LISP"], ans: "C. IPL" },
-  { q: "The first widely used commercial form of Artificial Intelligence (AI) is being used in many popular products like microwave ovens, automobiles and plug in circuit boards for desktop PCs. What is name of AI?", opts: ["A. Boolean logic", "B. Human logic", "C. Fuzzy logic", "D. Functional logic"], ans: "C. Fuzzy logic" },
-
-  // AI Categories & ML
-  { q: "Based on which of the following parameter Artificial Intelligence is categorized?", opts: ["a) Based on functionality only", "b) Based on capabilities only", "c) Based on capabilities and functionality", "d) It is not categorized"], ans: "c) Based on capabilities and functionality" },
-  { q: "What is Weak AI?", opts: ["a) The study of mental faculties using mental models implemented on a computer", "b) The embodiment of human intellectual capabilities within a computer", "c) A set of computer programs that produce output that would be considered to reflect intelligence if it were generated by humans", "d) All of the mentioned"], ans: "a) The study of mental faculties using mental models implemented on a computer" },
-  { q: "Machine learning is a subset of which?", opts: ["a) Artificial Intelligence", "b) Deep Learning", "c) Data Learning", "d) None of the above"], ans: "a) Artificial Intelligence" },
-  { q: "Which of the following are common classes of problems in machine learning?", opts: ["a) Regression", "b) Classification", "c) Clustering", "d) All of the above"], ans: "d) All of the above" },
-  { q: "What are the three types of Machine Learning?", opts: ["a) Supervised learning", "b) Unsupervised learning", "c) Reinforced learning", "d) All of the above"], ans: "d) All of the above" },
-  { q: "What is the primary function of generative AI?", opts: ["a) Classify data", "b) Synthesize new original content", "c) Optimize hardware", "d) Automate data entry"], ans: "b) Synthesize new original content" },
-  { q: "Why are transformers suitable for generative AI?", opts: ["a) Sequential dependence", "b) Parallel processing", "c) Short-range focus", "d) No non-linear transformations"], ans: "b) Parallel processing" },
-  { q: "Role of softmax in self-attention?", opts: ["a) Prevent overflow", "b) Normalize scores into probabilities", "c) Remove irrelevant tokens", "d) Linear progression"], ans: "b) Normalize scores into probabilities" },
-  { q: "How do AI poisoning attacks compromise models?", opts: ["a) Dataset diversity", "b) Taint training data", "c) Clean labeling", "d) Reduce complexity"], ans: "b) Taint training data" },
-
-  // IoT & Actuators
-  { q: "An actuator example is:", opts: ["a) Sensor", "b) Motor", "c) Microcontroller", "d) Router"], ans: "b) Motor" },
-  { q: "Servo motors are used for:", opts: ["a) Sensing", "b) Precise control of movement", "c) Data storage", "d) Communication"], ans: "b) Precise control of movement" },
-  { q: "Relays are used to:", opts: ["a) Sense voltage", "b) Control high-power devices", "c) Store data", "d) Process data"], ans: "b) Control high-power devices" },
-  { q: "Which is NOT an actuator?", opts: ["a) Motor", "b) Relay", "c) LED", "d) Temperature sensor"], ans: "d) Temperature sensor" },
-  { q: "Actuators receive signals from:", opts: ["a) Sensors", "b) Microcontrollers", "c) Routers", "d) Gateways"], ans: "b) Microcontrollers" },
-
-  // 5G & Security
-  { q: "5G stands for:", opts: ["a) Fifth Generation Network", "b) Five Gigabit Network", "c) Global Generation", "d) General Gateway"], ans: "a) Fifth Generation Network" },
-  { q: "5G provides:", opts: ["a) Low latency", "b) High latency", "c) Low speed", "d) Limited devices"], ans: "a) Low latency" },
-  { q: "5G supports:", opts: ["a) Few devices", "b) Massive IoT connectivity", "c) Offline communication", "d) Wired networks only"], ans: "b) Massive IoT connectivity" },
-  { q: "Why use password managers?", opts: ["a) Share passwords", "b) Generate unique credentials", "c) Reduce entropy", "d) Reuse weak passwords"], ans: "b) Generate unique credentials" },
-
-  // Cloud IoT & Protocols
-  { q: "In cloud-based IoT, devices send data to:", opts: ["a) Local PC", "b) Cloud server", "c) Mobile phone", "d) Router only"], ans: "b) Cloud server" },
-  { q: "Cloud acts as:", opts: ["a) Sensor", "b) Actuator", "c) Data processing unit", "d) Power source"], ans: "c) Data processing unit" },
-  { q: "Which is an advantage of cloud-based IoT?", opts: ["a) Limited storage", "b) High cost", "c) Elastic resources", "d) Manual processing"], ans: "c) Elastic resources" },
-  { q: "Cloud enables:", opts: ["a) Centralized management", "b) Offline access", "c) Manual updates", "d) Hardware dependency"], ans: "a) Centralized management" },
-  { q: "Which is a challenge in cloud-based IoT?", opts: ["a) Scalability", "b) Security", "c) Accessibility", "d) Storage"], ans: "b) Security" },
-  { q: "IoT mainly relies on:", opts: ["a) Sensors and connectivity", "b) Printers", "c) Scanners", "d) Cameras only"], ans: "a) Sensors and connectivity" },
-  { q: "Which protocol is lightweight for IoT?", opts: ["a) FTP", "b) SMTP", "c) MQTT", "d) SNMP"], ans: "c) MQTT" },
-
-  // More AI & IoT
-  { q: "Which of the following is not the commonly used programming language for Artificial Intelligence?", opts: ["a) Perl", "b) Java", "c) PROLOG", "d) LISP"], ans: "a) Perl" },
-  { q: "In ____ the goal is for the software to use what it has learned in one area to solve problems in other areas.", opts: ["A. Machine Learning", "B. Deep Learning", "C. Neural Networks", "D. None of these"], ans: "B. Deep Learning" },
-  { q: "Weak AI is also known as ____", opts: ["A. Narrow AI", "B. General AI", "C. Neural AI", "D. None of above"], ans: "A. Narrow AI" },
-  { q: "_____ AI is able to perform dedicated task.", opts: ["A. Narrow AI", "B. General AI", "C. Neural AI", "D. None of above"], ans: "A. Narrow AI" },
-  { q: "Apple siri is a good example of ______ AI.", opts: ["A. Narrow AI", "B. General AI", "C. Neural AI", "D. None of above"], ans: "A. Narrow AI" },
-  { q: "Which one is not element of IOT?", opts: ["A. Process", "B. People", "C. Security", "D. Things"], ans: "C. Security" },
-  { q: "______ includes GSM and CDMA.", opts: ["A. 2G", "B. 3G", "C. 4G", "D. None of above"], ans: "A. 2G" },
-  { q: "____________ protocol uses Universal Resource Identifiers (URIs) to identify HTTP resources.", opts: ["A. HTTP", "B. COAP", "C. WebSocket", "D. MQTT"], ans: "A. HTTP" },
-  { q: "TCP and UDP are called?", opts: ["A. Application protocols", "B. Session protocols", "C. Transport protocols", "D. Network protocols"], ans: "C. Transport protocols" },
-  { q: "Who invented the term the Internet of Things", opts: ["A. Bill Gates", "B Kevin Ashton", "C. Steve Jobs", "D. McDonald"], ans: "B Kevin Ashton" },
-  { q: "What is the name of the first recognized IOT device?", opts: ["A. Smart Watch", "B. ATM", "C Radio", "D Video Game"], ans: "B. ATM" },
-  { q: "Which cloud service model is used for IoT platforms?", opts: ["a) SaaS", "b) PaaS", "c) IaaS", "d) All of the above"], ans: "d) All of the above" },
-  { q: "Device management in IoT includes:", opts: ["a) Monitoring", "b) Firmware updates", "c) Configuration", "d) All of the above"], ans: "d) All of the above" },
-  { q: "IoT data is usually:", opts: ["a) Structured only", "b) Unstructured only", "c) Semi-structured", "d) Mixed"], ans: "d) Mixed" },
-  { q: "Smart agriculture uses IoT for:", opts: ["a) Soil monitoring", "b) Online shopping", "c) Gaming", "d) Education"], ans: "a) Soil monitoring" },
-  { q: "IOT devices which have unique identities and can perform ________________________.", opts: ["A. Remote sensing", "B. Actuating", "C. Monitoring capabilities", "D. All of the above"], ans: "D. All of the above" }
-];
-
-const totalQuestions = questions.length;
-const quizDiv = document.getElementById("quiz");
-const scoreContainer = document.getElementById("score-container");
-
-// Render questions
-questions.forEach((item, i) => {
-  const qDiv = document.createElement("div");
-  qDiv.className = "question";
-  qDiv.innerHTML = `
-    <div class="q-title">${i+1}. ${item.q}</div>
-    <div class="options">
-      ${item.opts.map(opt => `
-        <label>
-          <input type="radio" name="q${i}" value="${opt.replace(/"/g, '&quot;')}">
-          ${opt}
-        </label>
-      `).join('')}
+    <div class="wrapper" id="mainWrapper">
+        <div class="envelope">
+            <div class="flap"></div>
+            <div class="letter">
+                <h2>Sorry Mansi</h2>
+                <p>It's just a small joke, <br> tula rag alaa tar sorry, <br> parat nahi bolnar. ✨</p>
+                <div style="margin-top: 10px;">💖🐾✨</div>
+            </div>
+        </div>
     </div>
-    <div class="result" id="res${i}"></div>
-  `;
-  quizDiv.appendChild(qDiv);
-});
 
-function checkAnswers() {
-  let correctCount = 0;
+    <script>
+        let isOpen = false;
 
-  questions.forEach((item, i) => {
-    const res = document.getElementById(`res${i}`);
-    const sel = document.querySelector(`input[name="q${i}"]:checked`);
+        function handleInteraction(e) {
+            if (isOpen) return;
+            
+            isOpen = true;
+            document.body.classList.add('open');
+            
+            // Create the 'Explosion' effect
+            createExplosion(e.clientX, e.clientY);
+        }
 
-    res.style.display = "block";
+        function createExplosion(x, y) {
+            const icons = ['💖', '🐾', '✨', '🐱', '🌸'];
+            for (let i = 0; i < 20; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+                document.body.appendChild(p);
 
-    if (!sel) {
-      res.textContent = "Please select an answer!";
-      res.className = "result incorrect";
-      return;
-    }
+                const destinationX = (Math.random() - 0.5) * 300;
+                const destinationY = (Math.random() - 0.5) * 300;
+                const rotation = Math.random() * 520;
 
-    if (sel.value.trim() === item.ans.trim()) {
-      res.textContent = "Correct!";
-      res.className = "result correct";
-      correctCount++;
-    } else {
-      res.textContent = `Incorrect! Correct answer: ${item.ans}`;
-      res.className = "result incorrect";
-    }
-  });
+                const animation = p.animate([
+                    { transform: 'translate(-50%, -50%) translate(' + x + 'px, ' + y + 'px) scale(1)', opacity: 1 },
+                    { transform: 'translate(-50%, -50%) translate(' + (x + destinationX) + 'px, ' + (y + destinationY) + 'px) scale(0) rotate(' + rotation + 'deg)', opacity: 0 }
+                ], {
+                    duration: 1000 + Math.random() * 1000,
+                    easing: 'cubic-bezier(0, .9, .57, 1)',
+                    delay: Math.random() * 100
+                });
 
-  const percentage = Math.round((correctCount / totalQuestions) * 100);
-  let className = "score-poor";
-  if (percentage >= 60) className = "score-good";
-  else if (percentage >= 40) className = "score-average";
-
-  scoreContainer.innerHTML = `
-    Your Score: <span style="font-size:1.6rem">${correctCount}/${totalQuestions}</span> 
-    (${percentage}%)
-  `;
-  scoreContainer.className = `score-container ${className}`;
-  scoreContainer.style.display = "block";
-
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
-</script>
+                animation.onfinish = () => p.remove();
+            }
+        }
+    </script>
 </body>
 </html>
