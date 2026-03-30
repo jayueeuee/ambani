@@ -1,202 +1,236 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>For Mansi 🐾</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap');
+<meta charset="UTF-8">
+<title>Management Quiz</title>
 
-        :root {
-            --bg: #fff0f3;
-            --envelope: #ff85a1;
-            --flap: #ff4d6d;
-            --letter: #ffffff;
-            --accent: #c9184a;
-        }
+<style>
+body{font-family:Arial;background:#eef2f7;margin:0}
 
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
+.container{
+  max-width:900px;margin:20px auto;background:#fff;
+  padding:20px;border-radius:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1)
+}
 
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: var(--bg);
-            font-family: 'Poppins', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            cursor: pointer;
-        }
+.header{
+  display:flex;justify-content:space-between;align-items:center
+}
 
-        /* Particles for the 'Explosion' */
-        .particle {
-            position: absolute;
-            pointer-events: none;
-            z-index: 100;
-            font-size: 20px;
-        }
+.progress{font-size:14px;color:#555}
 
-        /* Envelope Wrapper */
-        .wrapper {
-            position: relative;
-            z-index: 10;
-            width: 300px;
-            height: 200px;
-            perspective: 1000px;
-            transition: transform 0.3s;
-        }
+.question{
+  background:#f9fbfd;padding:15px;border-radius:8px;
+  margin-bottom:12px;border:1px solid #e3e7ed
+}
 
-        .envelope {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            background: var(--envelope);
-            border-radius: 0 0 10px 10px;
-            box-shadow: 0 15px 45px rgba(201, 24, 74, 0.3);
-        }
+.question p{font-weight:bold;margin:0 0 8px}
 
-        /* The Lid */
-        .flap {
-            position: absolute;
-            top: 0;
-            width: 0;
-            height: 0;
-            border-left: 150px solid transparent;
-            border-right: 150px solid transparent;
-            border-top: 110px solid var(--flap);
-            transform-origin: top;
-            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 5;
-        }
+label{
+  display:block;
+  margin:5px 0;
+  padding:6px;
+  border-radius:5px;
+  cursor:pointer;
+}
 
-        /* The Hidden Letter */
-        .letter {
-            position: absolute;
-            bottom: 5px;
-            left: 5%;
-            width: 90%;
-            height: 0%; /* Hidden initially */
-            background: var(--letter);
-            border-radius: 8px;
-            padding: 25px 15px;
-            text-align: center;
-            transition: all 0.8s 0.4s ease-in-out;
-            z-index: 2;
-            opacity: 0; /* Fully hidden */
-            overflow: hidden;
-        }
+label:hover{
+  background:#eef4ff;
+}
 
-        .letter h2 {
-            font-family: 'Dancing Script', cursive;
-            color: var(--accent);
-            margin: 0;
-            font-size: 28px;
-            border-bottom: 1px dashed #ffccd5;
-            padding-bottom: 10px;
-        }
+.correct{background:#d4edda}
+.wrong{background:#f8d7da}
 
-        .letter p {
-            font-size: 16px;
-            color: #444;
-            line-height: 1.8;
-            margin-top: 15px;
-        }
+.controls{
+  display:flex;justify-content:space-between;margin-top:15px
+}
 
-        /* Animation when 'open' class is added */
-        body.open .flap {
-            transform: rotateX(180deg);
-            z-index: 1;
-        }
+button{
+  padding:10px 16px;border:none;border-radius:6px;
+  cursor:pointer;background:#007bff;color:#fff
+}
 
-        body.open .letter {
-            transform: translateY(-150px);
-            height: auto;
-            min-height: 220px;
-            z-index: 10;
-            opacity: 1;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
+button:disabled{background:#ccc}
 
-        /* Floating Hint */
-        .hint {
-            position: fixed;
-            bottom: 50px;
-            color: var(--accent);
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-size: 12px;
-            animation: bounce 2s infinite;
-        }
+#score{text-align:center;font-size:18px;margin-top:15px}
+</style>
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-10px);}
-            60% {transform: translateY(-5px);}
-        }
-
-        body.open .hint { display: none; }
-
-    </style>
 </head>
-<body onclick="handleInteraction(event)">
+<body>
 
-    <div class="hint">Tap to open for Mansi 🐾</div>
+<div class="container">
 
-    <div class="wrapper" id="mainWrapper">
-        <div class="envelope">
-            <div class="flap"></div>
-            <div class="letter">
-                <h2>Sorry Mansi</h2>
-                <p>It's just a small joke, <br> tula rag alaa tar sorry, <br> parat nahi bolnar. ✨</p>
-                <div style="margin-top: 10px;">💖🐾✨</div>
-            </div>
-        </div>
-    </div>
+<div class="header">
+<h3>Management Quiz (64 Questions)</h3>
+<div id="progress" class="progress"></div>
+</div>
 
-    <script>
-        let isOpen = false;
+<form id="quizForm"></form>
 
-        function handleInteraction(e) {
-            if (isOpen) return;
-            
-            isOpen = true;
-            document.body.classList.add('open');
-            
-            // Create the 'Explosion' effect
-            createExplosion(e.clientX, e.clientY);
-        }
+<div class="controls">
+<button onclick="prevPage()" id="prevBtn">Prev</button>
+<button onclick="nextPage()" id="nextBtn">Next</button>
+<button onclick="submitQuiz()" id="submitBtn" style="display:none">Submit</button>
+</div>
 
-        function createExplosion(x, y) {
-            const icons = ['💖', '🐾', '✨', '🐱', '🌸'];
-            for (let i = 0; i < 20; i++) {
-                const p = document.createElement('div');
-                p.className = 'particle';
-                p.innerHTML = icons[Math.floor(Math.random() * icons.length)];
-                document.body.appendChild(p);
+<div id="score"></div>
 
-                const destinationX = (Math.random() - 0.5) * 300;
-                const destinationY = (Math.random() - 0.5) * 300;
-                const rotation = Math.random() * 520;
+</div>
 
-                const animation = p.animate([
-                    { transform: 'translate(-50%, -50%) translate(' + x + 'px, ' + y + 'px) scale(1)', opacity: 1 },
-                    { transform: 'translate(-50%, -50%) translate(' + (x + destinationX) + 'px, ' + (y + destinationY) + 'px) scale(0) rotate(' + rotation + 'deg)', opacity: 0 }
-                ], {
-                    duration: 1000 + Math.random() * 1000,
-                    easing: 'cubic-bezier(0, .9, .57, 1)',
-                    delay: Math.random() * 100
-                });
+<script>
 
-                animation.onfinish = () => p.remove();
-            }
-        }
-    </script>
+const QUESTIONS_PER_PAGE = 10;
+let currentPage = 0;
+let reviewMode = false;
+
+const quizData = [/* KEEP SAME 64 QUESTIONS (UNCHANGED) */
+{q:"1. makes up a quality circle team?",options:["Only upper management","External consultants","A group of workers from the same or different department","A group of customer"],answer:2},
+{q:"2. A quality circle is primarily used for",options:["Production planning","Continuous improvement","Product design","Strategic planning"],answer:1},
+{q:"3. Identify the best suitable Kaizen approach",options:["Top-down decision-making","Reactive only","Proactive small improvements","Ignoring employee feedback"],answer:2},
+{q:"4. The main goal of Six Sigma methodology is",options:["To eliminate defects and improve quality","Increase production speed","Reduce employees","Lower operational costs"],answer:0},
+{q:"5. Tools supporting TQM process",options:["SPC Six Sigma Pareto Root Cause","Lean SWOT 5S","BCG Gantt","Balanced Score"],answer:0},
+{q:"6. Kanban card represents",options:["Order list","Request raw material","Visual signal for replenishing inventory","Work schedule"],answer:2},
+{q:"7. Purpose of Kanban system",options:["Track employee performance","Manage inventory flow","Improve scheduling","Track feedback"],answer:1},
+{q:"8. Set in Order goal",options:["Eliminate waste","Clean equipment","Organize tools","Create SOP"],answer:2},
+{q:"9. NOT element of TPM",options:["Corrective maintenance","Preventive maintenance","Employee involvement","Outsourcing repairs"],answer:3},
+{q:"10. Overproduction waste refers",options:["Producing more than needed","Waiting time","Movement waste","Inventory cost"],answer:0},
+
+{q:"11. ISO stands for",options:["International Service Organization","International Standards Organization","International System Organization","International Organization for Standardization"],answer:3},
+{q:"12. Quality standard except",options:["FDA","ISO","Lean Agile","PERT CPM"],answer:3},
+{q:"13. NOT quality standard",options:["ISO 9001","ISO 14001","Six Sigma","ISO 50001"],answer:2},
+{q:"14. PDCA cycle stands for",options:["Plan Do Check Act","Plan Do Check Assess","Prepare Differ Correct Act","Plan Do Cite Advice"],answer:0},
+{q:"15. OSHA includes",options:["Excavation","Workplace safety","Shipboard risk","Tractor safety"],answer:1},
+{q:"16. ERP uses platform",options:["Decentralized","Autocratic","Centralized","Democratic"],answer:2},
+{q:"17. NOT benefit ERP",options:["Efficiency","Improved productivity","Lack of real-time info","Better coordination"],answer:2},
+{q:"18. Goal ERP",options:["Reduce salary","Increase productivity real-time data","Manage personal info","Reduce communication"],answer:1},
+{q:"19. Cloud ERP advantage",options:["High cost","Limited access","Scalability low cost","PC only"],answer:2},
+{q:"20. Cloud ERP preferred",options:["Business hours only","Limited access","Access anywhere anytime","Complex installation"],answer:2},
+
+{q:"21. Quality management ISO",options:["ISO 14001","ISO 9001","ISO 45001","ISO 50001"],answer:1},
+{q:"22. Benefit ISO",options:["Increased bureaucracy","Improved risk management","Limited development","Decreased involvement"],answer:1},
+{q:"23. ISO certification improves",options:["Marketing","Hierarchy","Finance only","Efficiency quality satisfaction"],answer:3},
+{q:"24. ISO 14001 focus",options:["Financial performance","Energy efficiency","Environmental management","Set price"],answer:2},
+{q:"25. Environment ISO",options:["ISO 14001","ISO 9001","ISO 45001","ISO 50001"],answer:0},
+{q:"26. Purpose marketing",options:["Increase cost","Satisfy customers increase sales","Limit products","Reduce competition"],answer:1},
+{q:"27. NOT Seven Ps",options:["Product","Price","Positioning","Promotion"],answer:2},
+{q:"28. Place refers",options:["HQ location","Distribution channels","Online presence","Price strategy"],answer:1},
+{q:"29. ROI means",options:["Return on investment","Refer on interest","Rate of interest","Range internet"],answer:0},
+{q:"30. Marketing system drive",options:["Long term only","Short & long growth","Narrow mind","Short only"],answer:1},
+
+{q:"31. Price refers",options:["Raw material cost","Customer payment","Salary","Advertising budget"],answer:1},
+{q:"32. Needs describes",options:["Strong desire","Basic requirement","Luxury","Craving product"],answer:1},
+{q:"33. CRM is",options:["Customer range manufacturing","Company rate material","Customer range meaning","Customer relationship management"],answer:3},
+{q:"34. Pizza burger example",options:["Customer need","Customer want","Customer demand","Customer perfection"],answer:1},
+{q:"35. SCM involves",options:["Complaints","Flow goods services","Marketing strategy","Payroll"],answer:1},
+{q:"36. Logistics management",options:["Increase cost","Optimize efficiency satisfaction","No impact","Reduce accuracy"],answer:1},
+{q:"37. SCM contributes",options:["Increase price","Deliver on time","Decrease availability","Minimize interaction"],answer:1},
+{q:"38. Goal SCM",options:["Maximize cost","Reduce satisfaction","Right product right time","Decrease supplier"],answer:2},
+{q:"39. SCM components",options:["Procurement inventory distribution","Marketing branding","Finance tax","Advertising HR"],answer:0},
+{q:"40. Role transportation",options:["Production","Forecasting","Movement goods","Negotiation"],answer:2},
+
+{q:"41. Warehousing importance",options:["Reduce inventory","Storage management","Eliminate transport","Security only"],answer:1},
+{q:"42. Objective SCM",options:["Right product place time","Increase cost","Decrease demand","Reduce supplier"],answer:0},
+{q:"43. Sourcing relates",options:["Customer satisfaction","Selecting suppliers","Transportation","Order fulfilment"],answer:1},
+{q:"44. Logistics component",options:["Supplier audit","Market research","Delivery goods","Production scheduling"],answer:2},
+{q:"45. ERP in SCM",options:["Isolated data","Integrating functions","Slow communication","Increase lead"],answer:1},
+{q:"46. Predictive analytics",options:["No data decision","Increase cost","Forecast demand","Limit tech"],answer:2},
+{q:"47. IoT advantage",options:["Reduce visibility","Real time tracking","Increase manual","Limit communication"],answer:1},
+{q:"48. IT enabled SCM focus",options:["Real-time visibility","Manual entry","Marketing","Branding"],answer:0},
+{q:"49. IT benefit SCM",options:["Increase lead time","Enhanced collaboration","Higher cost","Reduced transparency"],answer:1},
+{q:"50. HRM significance",options:["Limit engagement","Enhance productivity culture","Ignore law","Recruit only"],answer:1},
+
+{q:"51. Training benefit",options:["Decrease skills","Frustration","Improve skills","Limit exposure"],answer:2},
+{q:"52. HRM assessment",options:["Performance management","Recruitment","Compensation","Work-life balance"],answer:0},
+{q:"53. Ethical HRM",options:["Salary","Legal ethical adherence","Limit concerns","Increase conflict"],answer:1},
+{q:"54. HRM morale",options:["Ignore balance","Compensation only","Work-life balance","Limit development"],answer:2},
+{q:"55. HRM contribution",options:["Limit engagement","Enhance productivity","Ignore law","Recruit dismissal"],answer:1},
+{q:"56. Training role",options:["Decrease skills","Frustration","Improve skills","Limit exposure"],answer:2},
+{q:"57. HRM assessment",options:["Performance management","Recruitment","Compensation","Balance"],answer:0},
+{q:"58. Improve morale",options:["Ignore balance","Compensation only","Work-life balance","Limit development"],answer:2},
+{q:"59. Chalk Circle purpose",options:["Drawing","Managers participate","Observation skills","Safety zones"],answer:2},
+{q:"60. Centralized leadership",options:["Democratic","Transformational","Laissez-Faire","Autocratic"],answer:3},
+
+{q:"61. Shared decision leadership",options:["Autocratic","Democratic","Laissez-Faire","Transformational"],answer:1},
+{q:"62. Inspire motivate",options:["Democratic","Autocratic","Laissez-Faire","Transformational"],answer:3},
+{q:"63. Laissez-Faire feature",options:["Leader decides","Employee freedom","Close supervision","Inspiring leader"],answer:1},
+{q:"64. Strict control style",options:["Autocratic","Democratic","Transformational","Laissez-Faire"],answer:0}
+];
+
+let userAnswers = new Array(quizData.length).fill(null);
+
+function renderPage(){
+  const form = document.getElementById("quizForm");
+  form.innerHTML = "";
+
+  let start = currentPage * QUESTIONS_PER_PAGE;
+  let end = Math.min(start + QUESTIONS_PER_PAGE, quizData.length);
+
+  document.getElementById("progress").innerText =
+    `Q ${start+1} - ${end} / ${quizData.length}`;
+
+  for(let i=start;i<end;i++){
+    let q = quizData[i];
+    let div = document.createElement("div");
+    div.className="question";
+
+    let html = `<p>${q.q}</p>`;
+
+    q.options.forEach((opt,j)=>{
+      let checked = userAnswers[i]===j ? "checked":"";
+      html += `
+      <label>
+      <input type="radio" name="q${i}" ${checked}
+      onchange="saveAnswer(${i},${j})"> ${opt}
+      </label>`;
+    });
+
+    div.innerHTML = html;
+
+    if(reviewMode && userAnswers[i]!==null){
+      if(userAnswers[i]===q.answer){
+        div.classList.add("correct");
+      } else {
+        div.classList.add("wrong");
+      }
+    }
+
+    form.appendChild(div);
+  }
+
+  prevBtn.disabled = currentPage===0;
+
+  if(end>=quizData.length){
+    nextBtn.style.display="none";
+    submitBtn.style.display="inline-block";
+  } else {
+    nextBtn.style.display="inline-block";
+    submitBtn.style.display="none";
+  }
+}
+
+function saveAnswer(i,val){
+  userAnswers[i]=val;
+}
+
+function nextPage(){currentPage++;renderPage();}
+function prevPage(){currentPage--;renderPage();}
+
+function submitQuiz(){
+  let score = userAnswers.reduce((acc,ans,i)=>{
+    return acc + (ans===quizData[i].answer ? 1:0);
+  },0);
+
+  document.getElementById("score").innerHTML =
+    `Score: ${score} / ${quizData.length}`;
+
+  reviewMode = true;
+  currentPage = 0;
+  renderPage();
+}
+
+renderPage();
+
+</script>
+
 </body>
 </html>
